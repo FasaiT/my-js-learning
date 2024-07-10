@@ -379,19 +379,17 @@
 // console.log(drink2);
 // console.log(`I like to drink ${age >= 18 ? 'wine': 'water'}`);
 
-// code challenge #4
-const tip = (bill / 100) * 15; //ข้อนี้ตอนแรกผิดที่วิธีการคิด %
-const totalValue = tip + bill;
-console.log(totalValue);
-console.log(
-  `The bill was ${bill}, the tip was ${tip}, and the total value was ${
-    bill + tip
-  }`
-);
+// // code challenge #4
+// const tip = (bill / 100) * 15; //ข้อนี้ตอนแรกผิดที่วิธีการคิด %
+// const totalValue = tip + bill;
+// console.log(totalValue);
+// console.log(
+//   `The bill was ${bill}, the tip was ${tip}, and the total value was ${
+//     bill + tip
+//   }`
+// );
 
 // KEY
 // const bill = 275;
 // const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2; //ternary operator
 // console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`);
-
-
