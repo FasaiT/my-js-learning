@@ -67,17 +67,17 @@ console.log(descPoplFinland);
 // console.log(descPoplChina);
 
 // ------------------- Introduction to Arrays -------------------
-let populations = [66, 10, 1441, 332];
-console.log(populations.length === 4);
+// let populations = [66, 10, 1441, 332];
+// console.log(populations.length === 4);
 
-let percentages = [
-  percentageOfWorld1(populations[0]),
-  percentageOfWorld1(populations[1]),
-  percentageOfWorld1(populations[2]),
-  percentageOfWorld1(populations[3]),
-];
+// let percentages = [
+//   percentageOfWorld1(populations[0]),
+//   percentageOfWorld1(populations[1]),
+//   percentageOfWorld1(populations[2]),
+//   percentageOfWorld1(populations[3]),
+// ];
 
-console.log(percentages);
+// console.log(percentages);
 
 // ------------------- ***Basic Array Operations (Methods)*** -------------------
 let neighbours = ["Myanmar", "Laos", "Malaysia"];
@@ -116,3 +116,77 @@ console.log(myCountry.population);
 //รูปแบบของการใช้งาน . dot notation & [ ] Bracket Notation แตกต่างกันตรงที่
 //dot notation จะไม่สามารถเอาชื่อตัวแปรมาอ้างอิง เพื่อเข้าถึงvalue ข้างในโดยตรงได้ ถ้าจะเข้าถึง ต้องเอา key ที่มีอยู่เท่านั้น ถึงจะได้ valueข้างในออกมา
 //Bracket Notation เหมือนเป็นการเข้าถึง index ของแอรเรย์ตัวนั้น ๆ โดยตรง โดยที่ค่าในรูปแบบนี้ เอาชื่อตัวแปรมาใช้ได้ เอาอะไรมาใช้ก็แต่ต้องอยู่ในรูปแบบของสตริงเท่านั้น ถึงจะเข้าถึง value ข้างในได้
+
+// ------------------- ***Object Methods*** -------------------
+const myCountryObjMet = {
+  country: "Thailand",
+  capital: "Bangkok",
+  language: "Thai",
+  population: 66,
+  neighbours: ["Myanmar", "Laos", "Malaysia"],
+  describe: function () {
+    console.log(
+      `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}.`
+    );
+  },
+  checkIsland: function () {
+    this.isIsland = this.neighbours.length === 0 ? true : false;
+    // KEY Even simpler version
+    //this.isIsland = !Boolean(this.neighbours.length);
+  },
+};
+myCountryObjMet.describe();
+myCountryObjMet.checkIsland();
+
+console.log(myCountryObjMet);
+
+// ------------------- Iteration: The for Loop -------------------
+// for (i = 0; i <= 50; i++) {
+//   console.log(`Voter number ${i} is currently voting`);
+// }
+//KEY
+// for (let voter = 1; voter <= 50; voter++)
+//   console.log(`Voter number ${voter} is currently voting`);
+
+// ------------------- ***Looping Arrays, Breaking and Continuing*** -------------------
+// bring back the populations array from a (KEY) previous assignment.
+const populations = [10, 1441, 332, 83];
+const percentages2 = [];
+
+for (let i = 0; i < populations.length; i++) {
+  const perc = percentageOfWorld1(populations[i]);
+  //use push() to add new elements to the new array called 'percentages2' after condition in for loop is true.
+  percentages2.push(perc);
+}
+console.log(percentages2);
+
+// ------------------- ***Looping Backwards and Loops in Loops*** -------------------
+//Nested loop
+// More information: https://businessdaduk.com/2023/06/14/javascript-loops-looping-backwards-loops-in-loops/
+
+const listOfNeighbours = [
+  ["Canada", "Mexico"],
+  ["Spain"],
+  ["Norway", "Sweden", "Russia"],
+];
+
+for (let i = 0; i < listOfNeighbours.length; i++) {
+  for (let j = 0; j < listOfNeighbours[i].length; j++) {
+    console.log(`Neighbour: ${listOfNeighbours[i][j]}`);
+  }
+}
+
+// ------------------- The while Loop -------------------
+const populations3 = [10, 1441, 332, 83];
+const percentages3 = [];
+let a = 0;
+while (a < populations3.length) {
+  const perc_ = percentageOfWorld1(populations3[a]);
+  percentages3.push(perc_);
+  a++;
+}
+console.log(percentages3);
+
+//for loop ใช้ในกรณีที่เรารู้จำนวนรอบที่แท้จริง
+//while loop ใช้ในกรณีที่เรื่อย ๆ เราไม่รู้จำนวนรอบที่แท้จริง
+// https://www.matterdevs.com/java-programming-lang-series-loop/
