@@ -31,16 +31,21 @@ const restaurant = {
   // },
 };
 
+//ข้างล่างคือการดึงค่าแอเรย์ออกมาเก็บไว้ในรูปแบบของตัวแปร
 const arr = [2, 3, 4];
 const a = arr[0];
 const b = arr[1];
 const c = arr[2];
 
 const [x, y, z] = arr;
-//การประกาศตัวแปรที่หน้าต่าคล้ายกับแอเรย์ไว้ด้านซ้ายคือ destructuring assignment, not an arrays, must use const เป็นการเขียนค้ดแบบย่อหน้าตาเหมือนแอเรย์
+//ใช้การประกาศตัวแปร const เพราะเป็นค่าคงที่
+//การประกาศตัวแปรที่หน้าต่าคล้ายกับแอเรย์ไว้ด้านซ้ายคือ destructuring assignment, not an arrays, must use const เป็นการเขียนโค้ดแบบย่อหน้าตาเหมือนแอเรย์
 //The original array is of course not affected. เพราะเราแค่ unpack มันออกมาเฉย ๆ
-console.log(x, y, z);
+console.log(x, y, z); //ได้ผลลัพธ์ของแอเรย์ออกมา
 console.log(arr);
+
+// const [first, , second] = restaurant.categories;
+// console.log(first, second);
 
 let [main, , secondary] = restaurant.categories;
 //ในการทำ Destructuring Arrays เราไม่จำเป็นต้องสร้างตัวแปรขึ้นมาใหม่ เราแค่ , คั่นแล้วเว้นว่างไปเลยก็ได้ มันก็จะแสดงเป็นตำแหน่งตัวที่เราต้องการแทน ในที่นี้คือตัวที่ 3 ของ restaurant.categories
