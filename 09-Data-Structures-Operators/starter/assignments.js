@@ -238,3 +238,17 @@ const ratings = [
   ['rating', 4.19],
   ['ratingsCount', 144584],
 ];
+
+// const [[rating, num01], [ratingsCount, num02]] = nested;
+// console.log(rating, num01, ratingsCount, num02);
+//KEY
+const [[, rating], [, ratingsCount]] = ratings;
+console.log(ratings);
+
+//1.4 Below is the ratingStars array. Destructure it into three variables called fiveStarRatings, oneStarRatings and threeStarRatings. Assign the threeStarRatings variable with a default value of 0.
+const ratingStars = [63405, 1808];
+// const fiveStarRatings = 63405;
+// const oneStarRatings = 1808;
+// const threeStarRatings = ratingStars.push(2, 0);
+const [fiveStarRatings, oneStarRatings, threeStarRatings = 0] = ratingStars;
+console.log(fiveStarRatings, oneStarRatings, threeStarRatings);
