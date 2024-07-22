@@ -30,49 +30,100 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+
+  orderDelivery : function ({starterIndex = 1, mainIndex = 0, time = '20.00', address}) 
+  {
+    console.log(`Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+  },
 };
+
 ///////////////////////////////////////////////
-//Destructering Arrays
-//ข้างล่างคือการดึงค่าแอเรย์ออกมาเก็บไว้ในรูปแบบของตัวแปร
-const arr = [2, 3, 4];
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+//Destructering Objects
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sol, 21',
+  mainIndex: 2,
+  starterIndex: 2,
+})
 
-const [x, y, z] = arr;
-//ใช้การประกาศตัวแปร const เพราะเป็นค่าคงที่
-//การประกาศตัวแปรที่หน้าต่าคล้ายกับแอเรย์ไว้ด้านซ้ายคือ destructuring assignment, not an arrays, must use const เป็นการเขียนโค้ดแบบย่อหน้าตาเหมือนแอเรย์
-//The original array is of course not affected. เพราะเราแค่ unpack มันออกมาเฉย ๆ
-console.log(x, y, z); //ได้ผลลัพธ์ของแอเรย์ออกมา
-console.log(arr);
+restaurant.orderDelivery({
+  address: 'Via del Sol, 21',
+  starterIndex: 1,
+})
 
-// const [first, , second] = restaurant.categories;
-// console.log(first, second);
+const {name, openingHours, categories} = restaurant;
+console.log(name, openingHours, categories);
 
-let [main, , secondary] = restaurant.categories;
-//ในการทำ Destructuring Arrays เราไม่จำเป็นต้องสร้างตัวแปรขึ้นมาใหม่ เราแค่ , คั่นแล้วเว้นว่างไปเลยก็ได้ มันก็จะแสดงเป็นตำแหน่งตัวที่เราต้องการแทน ในที่นี้คือตัวที่ 3 ของ restaurant.categories
-console.log(main, secondary);
+const {
+  name: restaurantName, 
+  openingHours: hours, 
+  categories: tags
+} = restaurant
+console.log(restaurantName, hours, tags); 
 
-//Switching variables
-// const temp = main;
-// main = secondary;
-// secondary = temp;
+//Setting a default value to the object 
+//ตรงนี้เป็นประโยชน์เพราะในความเป็นจริงแล้ว เรารับdata มาจากที่ไหนสักที่ เราไม่มีทางรู้หน้าตาของข้อมูลที่แท้จริง 
+//Default variables
+const {menu = [], starterMenu: starters = []} = restaurant;
+console.log(menu, starters);
+
+//Mutating variables
+let a = 111;
+let b = 999;
+const obj = {a: 23, b: 7, c: 14};
+({a,b} = obj); //Have to wrap this destructuring assignment into parenthesis.
+
+console.log(a,b);
+
+//Nested objects
+const{ fri: {open: o, close: c} } = openingHours;
+console.log(o, c);
+
+
+///////////////////////////////////////////////
+// //Destructering Arrays
+// //ข้างล่างคือการดึงค่าแอเรย์ออกมาเก็บไว้ในรูปแบบของตัวแปร
+// const arr = [2, 3, 4];
+// const a = arr[0];
+// const b = arr[1];
+// const c = arr[2];
+
+// const [x, y, z] = arr;
+// //ใช้การประกาศตัวแปร const เพราะเป็นค่าคงที่
+// //การประกาศตัวแปรที่หน้าต่าคล้ายกับแอเรย์ไว้ด้านซ้ายคือ destructuring assignment, not an arrays, must use const เป็นการเขียนโค้ดแบบย่อหน้าตาเหมือนแอเรย์
+// //The original array is of course not affected. เพราะเราแค่ unpack มันออกมาเฉย ๆ
+// console.log(x, y, z); //ได้ผลลัพธ์ของแอเรย์ออกมา
+// console.log(arr);
+
+// // const [first, , second] = restaurant.categories;
+// // console.log(first, second);
+
+// let [main, , secondary] = restaurant.categories;
+// //ในการทำ Destructuring Arrays เราไม่จำเป็นต้องสร้างตัวแปรขึ้นมาใหม่ เราแค่ , คั่นแล้วเว้นว่างไปเลยก็ได้ มันก็จะแสดงเป็นตำแหน่งตัวที่เราต้องการแทน ในที่นี้คือตัวที่ 3 ของ restaurant.categories
 // console.log(main, secondary);
 
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+// //Switching variables
+// // const temp = main;
+// // main = secondary;
+// // secondary = temp;
+// // console.log(main, secondary);
 
-//Receive 2 return values from a function
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse);
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
 
-//Nested destructuring
-const nested = [2, 4, [5, 6]];
-// const [i, , j] = nested;
-// console.log(i, j);
-const [i, , [j, k]] = nested;
-console.log(i, j, k);
+// //Receive 2 return values from a function
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse);
 
-//Setting Default values
-const [p = 1, q = 1, r = 1] = [8, 9];
-console.log(p, q, r);
+// //Nested destructuring
+// const nested = [2, 4, [5, 6]];
+// // const [i, , j] = nested;
+// // console.log(i, j);
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
+
+// //Setting Default values
+// const [p = 1, q = 1, r = 1] = [8, 9];
+// console.log(p, q, r);
+///////////////////////////////////////////////
+
