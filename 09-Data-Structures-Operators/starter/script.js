@@ -35,50 +35,53 @@ const restaurant = {
   {
     console.log(`Order recieved! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
   },
+
+  orderPasta: function(ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  }
 };
 
 ///////////////////////////////////////////////
-//Destructering Objects
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sol, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-})
+// //Destructering Objects
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sol, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// })
 
-restaurant.orderDelivery({
-  address: 'Via del Sol, 21',
-  starterIndex: 1,
-})
+// restaurant.orderDelivery({
+//   address: 'Via del Sol, 21',
+//   starterIndex: 1,
+// })
 
-const {name, openingHours, categories} = restaurant;
-console.log(name, openingHours, categories);
+// const {name, openingHours, categories} = restaurant;
+// console.log(name, openingHours, categories);
 
-const {
-  name: restaurantName, 
-  openingHours: hours, 
-  categories: tags
-} = restaurant
-console.log(restaurantName, hours, tags); 
+// const {
+//   name: restaurantName, 
+//   openingHours: hours, 
+//   categories: tags
+// } = restaurant
+// console.log(restaurantName, hours, tags); 
 
-//Setting a default value to the object 
-//ตรงนี้เป็นประโยชน์เพราะในความเป็นจริงแล้ว เรารับdata มาจากที่ไหนสักที่ เราไม่มีทางรู้หน้าตาของข้อมูลที่แท้จริง 
-//Default variables
-const {menu = [], starterMenu: starters = []} = restaurant;
-console.log(menu, starters);
+// //Setting a default value to the object 
+// //ตรงนี้เป็นประโยชน์เพราะในความเป็นจริงแล้ว เรารับdata มาจากที่ไหนสักที่ เราไม่มีทางรู้หน้าตาของข้อมูลที่แท้จริง 
+// //Default variables
+// const {menu = [], starterMenu: starters = []} = restaurant;
+// console.log(menu, starters);
 
-//Mutating variables
-let a = 111;
-let b = 999;
-const obj = {a: 23, b: 7, c: 14};
-({a,b} = obj); //Have to wrap this destructuring assignment into parenthesis.
+// //Mutating variables
+// let a = 111;
+// let b = 999;
+// const obj = {a: 23, b: 7, c: 14};
+// ({a,b} = obj); //Have to wrap this destructuring assignment into parenthesis.
 
-console.log(a,b);
+// console.log(a,b);
 
-//Nested objects
-const{ fri: {open: o, close: c} } = openingHours;
-console.log(o, c);
-
+// //Nested objects
+// const{ fri: {open: o, close: c} } = openingHours;
+// console.log(o, c);
 
 ///////////////////////////////////////////////
 // //Destructering Arrays
@@ -106,7 +109,7 @@ console.log(o, c);
 // // const temp = main;
 // // main = secondary;
 // // secondary = temp;
-// // console.log(main, secondary);
+// // console.log(main, secondary);                                                                                                                                                                                                                                                                                                                                                                                                             
 
 // [main, secondary] = [secondary, main];
 // console.log(main, secondary);
@@ -127,3 +130,52 @@ console.log(o, c);
 // console.log(p, q, r);
 ///////////////////////////////////////////////
 
+//The Spread Operator (...)
+const arr = [7,8,9];
+const badNewArr = [1,2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+const newArr = [1,2, ...arr]; 
+console.log(newArr); 
+
+console.log(...newArr); //The result is the same way as we write console.log(1,2,7,8,9);
+
+//Adding new element to the array by using spread operator
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+console.log(newMenu);
+
+//Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+//Join 2 arrays (starterMenu, mainMenu)
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
+
+//Iterables: arrays, strings, maps, sets, NOT objects
+const str = 'Jonas';
+const letters = [...str, 'S.'];
+console.log(letters);
+console.log(...str);
+console.log('j','o');
+//console.log(`${...str} Schmedtmann`); //เราไม่สามารถใช้กับการสร้างสตริงใน template literal ได้ เพราะใน `${ }` เก็บหลายค่าที่แยกออกจากกันด้วยcomma ไม่ได้ 
+//เราจะสามารถส่งหลายค่าที่แยกออกจากกันด้วย คอมม่าได้ก็ต่อเมื่อ เราต้องการสร้างแอร์เรย์ใหม่หรือ ส่งอาร์กิวเม้นท์ผ่านฟังก์ชันเท่านั้น
+
+//Real-world example
+const ingredients = [
+  // prompt("Let\'s make paste ! Ingredient 1?"), 
+  // prompt("Let\'s make paste ! Ingredient 2?"), 
+  // prompt("Let\'s make paste ! Ingredient 3?")
+  ];
+console.log(ingredients);
+
+restaurant.orderPasta(ingredients[0], ingredients[1],ingredients[2]);
+restaurant.orderPasta(...ingredients);
+
+//Objects
+const newRestautant = {foundedIn: 1998, ...restaurant, founder: 'Guiseppe'};
+console.log(newRestautant);
+
+const restaurantCopy = {...restaurant};
+restaurantCopy.name ='Ristorante Roma';
+console.log(restaurantCopy.name);
+console.log(restaurant.name);
