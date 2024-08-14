@@ -38,10 +38,15 @@ const restaurant = {
 
   orderPasta: function(ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
+
+  orderPizza: function(mainIngredient, ...otherIngredient) {
+  console.log(mainIngredient);
+  console.log(otherIngredient);
   }
 };
 
-///////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
 // //Destructering Objects
 // restaurant.orderDelivery({
 //   time: '22:30',
@@ -130,52 +135,87 @@ const restaurant = {
 // console.log(p, q, r);
 ///////////////////////////////////////////////
 
-//The Spread Operator (...)
-const arr = [7,8,9];
-const badNewArr = [1,2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+// //The Spread Operator (...)
+// const arr = [7,8,9];
+// const badNewArr = [1,2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
 
-const newArr = [1,2, ...arr]; 
-console.log(newArr); 
+// const newArr = [1,2, ...arr]; 
+// console.log(newArr); 
 
-console.log(...newArr); //The result is the same way as we write console.log(1,2,7,8,9);
+// console.log(...newArr); //The result is the same way as we write console.log(1,2,7,8,9);
 
-//Adding new element to the array by using spread operator
-const newMenu = [...restaurant.mainMenu, 'Gnocci'];
-console.log(newMenu);
+// //Adding new element to the array by using spread operator
+// const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+// console.log(newMenu);
 
-//Copy array
-const mainMenuCopy = [...restaurant.mainMenu];
+// //Copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
 
-//Join 2 arrays (starterMenu, mainMenu)
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+// //Join 2 arrays (starterMenu, mainMenu)
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
 
-//Iterables: arrays, strings, maps, sets, NOT objects
-const str = 'Jonas';
-const letters = [...str, 'S.'];
-console.log(letters);
-console.log(...str);
-console.log('j','o');
-//console.log(`${...str} Schmedtmann`); //เราไม่สามารถใช้กับการสร้างสตริงใน template literal ได้ เพราะใน `${ }` เก็บหลายค่าที่แยกออกจากกันด้วยcomma ไม่ได้ 
-//เราจะสามารถส่งหลายค่าที่แยกออกจากกันด้วย คอมม่าได้ก็ต่อเมื่อ เราต้องการสร้างแอร์เรย์ใหม่หรือ ส่งอาร์กิวเม้นท์ผ่านฟังก์ชันเท่านั้น
+// //Iterables: arrays, strings, maps, sets, NOT objects
+// const str = 'Jonas';
+// const letters = [...str, 'S.'];
+// console.log(letters);
+// console.log(...str);
+// console.log('j','o');
+// //console.log(`${...str} Schmedtmann`); //เราไม่สามารถใช้กับการสร้างสตริงใน template literal ได้ เพราะใน `${ }` เก็บหลายค่าที่แยกออกจากกันด้วยcomma ไม่ได้ 
+// //เราจะสามารถส่งหลายค่าที่แยกออกจากกันด้วย คอมม่าได้ก็ต่อเมื่อ เราต้องการสร้างแอร์เรย์ใหม่หรือ ส่งอาร์กิวเม้นท์ผ่านฟังก์ชันเท่านั้น
 
-//Real-world example
-const ingredients = [
-  // prompt("Let\'s make paste ! Ingredient 1?"), 
-  // prompt("Let\'s make paste ! Ingredient 2?"), 
-  // prompt("Let\'s make paste ! Ingredient 3?")
-  ];
-console.log(ingredients);
+// //Real-world example
+// const ingredients = [
+//   // prompt("Let\'s make paste ! Ingredient 1?"), 
+//   // prompt("Let\'s make paste ! Ingredient 2?"), 
+//   // prompt("Let\'s make paste ! Ingredient 3?")
+//   ];
+// console.log(ingredients);
 
-restaurant.orderPasta(ingredients[0], ingredients[1],ingredients[2]);
-restaurant.orderPasta(...ingredients);
+// restaurant.orderPasta(ingredients[0], ingredients[1],ingredients[2]);
+// restaurant.orderPasta(...ingredients);
+
+// //Objects
+// const newRestautant = {foundedIn: 1998, ...restaurant, founder: 'Guiseppe'};
+// console.log(newRestautant);
+
+// const restaurantCopy = {...restaurant};
+// restaurantCopy.name ='Ristorante Roma';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+///////////////////////////////////////////////
+
+//Rest Pattern and Parameters
+//1) Destructuring
+//SPREAD, because on the ROGHT side of =
+const arr = [1,2,...[3,4]];
+
+//REST, because on LEFT side of =
+const [a,b, ...others] = [1,2,3,4,5];
+console.log(a, b, others);
+
+const [pizza, ,risotto,...otherfood] = 
+[...restaurant.mainMenu, 
+  ...restaurant.starterMenu];
+console.log(pizza, risotto, otherfood); //ตัวประกอบที่เหลือทั้งหมด ไม่ว่าจะอยู่ในตำแหน่งไหนก็ตามที่เราไม่ได้อ้างอิงถึง จะถูกเก็บไว้ในตัวแปรตัวสุดท้าย ในที่นี้คือ otherfood เราจะไม่สามารถใส่ตัวแปรอะไรเพิ่มเติมเข้าไปข้างหลังอีกได้ เพราะไม่งั้น syntax REST จะไม่ทำงาน
 
 //Objects
-const newRestautant = {foundedIn: 1998, ...restaurant, founder: 'Guiseppe'};
-console.log(newRestautant);
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
-const restaurantCopy = {...restaurant};
-restaurantCopy.name ='Ristorante Roma';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+//2) Functions
+const add = function(...numbers) {
+let sum = 0;
+for(let i =0; i < numbers.length; i++) sum += numbers[i];
+console.log(sum);
+}
+add(2,3);
+add (5,3,7,2);
+add(8,2,5,3,2,1,4);
+
+const x = [23, 5,7];
+add(...x);
+
+restaurant.orderPizza('mushroom', 'onion', 'olives', 'spanich');
+restaurant.orderPizza('mushroom');

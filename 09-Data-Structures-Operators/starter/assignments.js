@@ -324,5 +324,4 @@ console.log(word);
 function spellWord(word) {
   console.log(...word);
 }
-
 spellWord(word);
