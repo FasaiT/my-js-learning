@@ -46,6 +46,7 @@ const restaurant = {
   }
 };
 
+
 /////////////////////////////////////////////////////////////////////////
 // //Destructering Objects
 // restaurant.orderDelivery({
@@ -186,36 +187,68 @@ const restaurant = {
 // console.log(restaurant.name);
 ///////////////////////////////////////////////
 
-//Rest Pattern and Parameters
-//1) Destructuring
-//SPREAD, because on the ROGHT side of =
-const arr = [1,2,...[3,4]];
+// //Rest Pattern and Parameters
+// //1) Destructuring
+// //SPREAD, because on the ROGHT side of =
+// const arr = [1,2,...[3,4]];
 
-//REST, because on LEFT side of =
-const [a,b, ...others] = [1,2,3,4,5];
-console.log(a, b, others);
+// //REST, because on LEFT side of =
+// const [a,b, ...others] = [1,2,3,4,5];
+// console.log(a, b, others);
 
-const [pizza, ,risotto,...otherfood] = 
-[...restaurant.mainMenu, 
-  ...restaurant.starterMenu];
-console.log(pizza, risotto, otherfood); //ตัวประกอบที่เหลือทั้งหมด ไม่ว่าจะอยู่ในตำแหน่งไหนก็ตามที่เราไม่ได้อ้างอิงถึง จะถูกเก็บไว้ในตัวแปรตัวสุดท้าย ในที่นี้คือ otherfood เราจะไม่สามารถใส่ตัวแปรอะไรเพิ่มเติมเข้าไปข้างหลังอีกได้ เพราะไม่งั้น syntax REST จะไม่ทำงาน
+// const [pizza, ,risotto,...otherfood] = 
+// [...restaurant.mainMenu, 
+//   ...restaurant.starterMenu];
+// console.log(pizza, risotto, otherfood); //ตัวประกอบที่เหลือทั้งหมด ไม่ว่าจะอยู่ในตำแหน่งไหนก็ตามที่เราไม่ได้อ้างอิงถึง จะถูกเก็บไว้ในตัวแปรตัวสุดท้าย ในที่นี้คือ otherfood เราจะไม่สามารถใส่ตัวแปรอะไรเพิ่มเติมเข้าไปข้างหลังอีกได้ เพราะไม่งั้น syntax REST จะไม่ทำงาน
 
-//Objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// //Objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
 
-//2) Functions
-const add = function(...numbers) {
-let sum = 0;
-for(let i =0; i < numbers.length; i++) sum += numbers[i];
-console.log(sum);
+// //2) Functions
+// const add = function(...numbers) {
+// let sum = 0;
+// for(let i =0; i < numbers.length; i++) sum += numbers[i];
+// console.log(sum);
+// }
+// add(2,3);
+// add (5,3,7,2);
+// add(8,2,5,3,2,1,4);
+
+// const x = [23, 5,7];
+// add(...x);
+
+// restaurant.orderPizza('mushroom', 'onion', 'olives', 'spanich');
+// restaurant.orderPizza('mushroom');
+///////////////////////////////////////////////
+
+//Short Circuiting (&& and ||)
+console.log('----- OR -----'); //OR จะสนใจแค่ค่าแรกที่เป็น true เท่านั้น นอกนั้นไม่สนใจ
+//1) Use ANY data type, return ANY data type, short-circuit evaluation.
+console.log(3 || 'Jonas'); //3
+console.log('' || 'Jonas'); //Jonas
+console.log(true || 0); //true
+console.log(undefined || null); //null
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests: 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----- AND -----'); //AND จะเป็นจริงก็ต่อเมื่อ การดำเนินการทั้งหมดเป็นจริงเท่านั้น ถ้ามีตัวใดผิด มันก็จะคืนค่า false 
+console.log(0 && 'Jonas'); //0 //คืนค่าที่เป็น false เท่านั้นโดยไม่สนใจตัวอื่น
+console.log(7 && 'Jonas'); //Jonas //แต่ถ้าค่าแรกที่เจอเป็น true มันจะดำเนินการต่อไป และส่งคืนค่าสุดท้ายที่เป็น true ตัวเดียวเลย
+
+console.log('Hello' && 23 && null && 'Jonas'); //null เพราะ Hello เป็น true, 23 เป็น true แต่ null เป็น false มันเลยไม่ได้ดำเนินการไปต่อจนถึงตัวสุดท้าย
+
+//Practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza ('mushroom', 'spanich');
 }
-add(2,3);
-add (5,3,7,2);
-add(8,2,5,3,2,1,4);
 
-const x = [23, 5,7];
-add(...x);
+restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spanich');
 
-restaurant.orderPizza('mushroom', 'onion', 'olives', 'spanich');
-restaurant.orderPizza('mushroom');
