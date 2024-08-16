@@ -46,7 +46,6 @@ const restaurant = {
   }
 };
 
-
 /////////////////////////////////////////////////////////////////////////
 // //Destructering Objects
 // restaurant.orderDelivery({
@@ -222,33 +221,43 @@ const restaurant = {
 // restaurant.orderPizza('mushroom');
 ///////////////////////////////////////////////
 
-//Short Circuiting (&& and ||)
-console.log('----- OR -----'); //OR จะสนใจแค่ค่าแรกที่เป็น true เท่านั้น นอกนั้นไม่สนใจ
-//1) Use ANY data type, return ANY data type, short-circuit evaluation.
-console.log(3 || 'Jonas'); //3
-console.log('' || 'Jonas'); //Jonas
-console.log(true || 0); //true
-console.log(undefined || null); //null
+// //Short Circuiting (&& and ||)
+// console.log('----- OR -----'); //OR จะสนใจแค่ค่าแรกที่เป็น true เท่านั้น นอกนั้นไม่สนใจ
+// //1) Use ANY data type, return ANY data type, short-circuit evaluation.
+// console.log(3 || 'Jonas'); //3
+// console.log('' || 'Jonas'); //Jonas
+// console.log(true || 0); //true
+// console.log(undefined || null); //null
 
-console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
 
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests: 10;
-console.log(guests1);
+// restaurant.numGuests = 23;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests: 10;
+// console.log(guests1);
 
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
-console.log('----- AND -----'); //AND จะเป็นจริงก็ต่อเมื่อ การดำเนินการทั้งหมดเป็นจริงเท่านั้น ถ้ามีตัวใดผิด มันก็จะคืนค่า false 
-console.log(0 && 'Jonas'); //0 //คืนค่าที่เป็น false เท่านั้นโดยไม่สนใจตัวอื่น
-console.log(7 && 'Jonas'); //Jonas //แต่ถ้าค่าแรกที่เจอเป็น true มันจะดำเนินการต่อไป และส่งคืนค่าสุดท้ายที่เป็น true ตัวเดียวเลย
+// console.log('----- AND -----'); //AND จะเป็นจริงก็ต่อเมื่อ การดำเนินการทั้งหมดเป็นจริงเท่านั้น ถ้ามีตัวใดผิด มันก็จะคืนค่า false 
+// console.log(0 && 'Jonas'); //0 //คืนค่าที่เป็น false เท่านั้นโดยไม่สนใจตัวอื่น
+// console.log(7 && 'Jonas'); //Jonas //แต่ถ้าค่าแรกที่เจอเป็น true มันจะดำเนินการต่อไป และส่งคืนค่าสุดท้ายที่เป็น true ตัวเดียวเลย
 
-console.log('Hello' && 23 && null && 'Jonas'); //null เพราะ Hello เป็น true, 23 เป็น true แต่ null เป็น false มันเลยไม่ได้ดำเนินการไปต่อจนถึงตัวสุดท้าย
+// console.log('Hello' && 23 && null && 'Jonas'); //null เพราะ Hello เป็น true, 23 เป็น true แต่ null เป็น false มันเลยไม่ได้ดำเนินการไปต่อจนถึงตัวสุดท้าย
 
-//Practical example
-if (restaurant.orderPizza) {
-  restaurant.orderPizza ('mushroom', 'spanich');
-}
+// //Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza ('mushroom', 'spanich');
+// }
 
-restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spanich');
+// restaurant.orderPizza && restaurant.orderPizza('mushroom', 'spanich');
+
+
+//The Nullish Coalescing Operator (??) จะ Return ค่าทางขวามือเมื่อค่าทางซ้ายเป็น Null หรือ Undefined
+// restaurant.numGuests = 0;
+const guests = restaurant.numGuests || 10;
+console.log(guests);
+
+//Nullish: null and undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
 
