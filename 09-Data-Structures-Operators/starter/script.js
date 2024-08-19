@@ -46,39 +46,6 @@ const restaurant = {
   }
 };
 
-//Logical Assignment Operators
-const rest1 = {
-  name: 'Capri',
-  // numGuests: 20,
-  numGuests: 0,
-};
-
-const rest2 = {
-  name: 'La Piazza',
-  owner: 'Giovanni Rossi',
-};
-
-//OR assignment operator
-// rest1.numGuests = rest1.numGuests || 10; 
-// rest2.numGuests = rest2.numGuests || 10;
-//Or we can writr the same thing in more concise way 
-// rest1.numGuests ||= 10; //20 
-// rest2.numGuests ||= 10; //10
-
-//Nullish assignment operator (null or undefined) คือจะใส่ค่าให้กับตัวแปรนั้น เมื่อตัวแปรนั้นเป็น null or undefined
-rest1.numGuests ??= 10; //0
-rest2.numGuests ??= 10; //10
-
-//AND assignment operator
-// rest1.owner = rest1.owner && '<ANONYMUS>' //owner: undefined because there is no owner
-// rest2.owner = rest2.owner && '<ANONYMUS>' //owner: '<ANONYMUS>'
-rest1.owner &&= '<ANONYMUS>'; //คุณสมบัติ owner ไม่มีอยู่จริง false ด้วยวิธีการเขียนแบบนี้ มันกจะไม่มี owner: undefined
-rest2.owner &&= '<ANONYMUS>'; //คุณสมบัติ owner มีอยู่จริง true
-
-console.log(rest1); //20 
-console.log(rest2); //10
-
-
 
 /////////////////////////////////////////////////////////////////////////
 // //Destructering Objects
@@ -295,3 +262,35 @@ console.log(rest2); //10
 // const guestCorrect = restaurant.numGuests ?? 10;
 // console.log(guestCorrect);
 
+// //Logical Assignment Operators
+// const rest1 = {
+//   name: 'Capri',
+//   // numGuests: 20,
+//   numGuests: 0,
+// };
+
+// const rest2 = {
+//   name: 'La Piazza',
+//   owner: 'Giovanni Rossi',
+// };
+
+// //OR assignment operator
+// // rest1.numGuests = rest1.numGuests || 10; 
+// // rest2.numGuests = rest2.numGuests || 10;
+// //Or we can writr the same thing in more concise way 
+// // rest1.numGuests ||= 10; //20 
+// // rest2.numGuests ||= 10; //10
+
+// //Nullish assignment operator (null or undefined) คือจะใส่ค่าให้กับตัวแปรนั้น เมื่อตัวแปรนั้นเป็น null or undefined
+// rest1.numGuests ??= 10; //0
+// rest2.numGuests ??= 10; //10
+
+// //AND assignment operator
+// // rest1.owner = rest1.owner && '<ANONYMUS>' //owner: undefined because there is no owner
+// // rest2.owner = rest2.owner && '<ANONYMUS>' //owner: '<ANONYMUS>'
+// rest1.owner &&= '<ANONYMUS>'; //คุณสมบัติ owner ไม่มีอยู่จริง false ด้วยวิธีการเขียนแบบนี้ มันกจะไม่มี owner: undefined
+// rest2.owner &&= '<ANONYMUS>'; //คุณสมบัติ owner มีอยู่จริง true
+
+// console.log(rest1); //20 
+// console.log(rest2); //10
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////=
